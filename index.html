@@ -1,0 +1,17 @@
+---
+layout: default
+title: Blueness
+---
+
+{% for post in site.posts limit:1 %}
+<h1>{{ post.title }}
+  
+  <div id="post-nav">
+    <span class="page-nav-item prev">
+      <a rel="prev" href="{{ post.previous.url }}" title="{{ post.previous.title }}">«</a>
+    </span>
+  </div></h1>
+<p class="post-info">Posted on {{ post.date | date_to_long_string }} </p> 
+{{ post.content }}
+
+{% endfor %}
