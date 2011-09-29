@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  <title>Blueness</title>
- <link href="http://www.sizhujay.me/articles.xml" rel="self"/>
- <link href="http://www.sizhujay.me"/>
- <updated>2011-09-29T20:26:54+08:00</updated>
- <id>http://www.sizhujay.me</id>
+ <link href="http://blog.sizhujay.me/articles.xml" rel="self"/>
+ <link href="http://blog.sizhujay.me"/>
+ <updated>2011-09-29T20:51:10+08:00</updated>
+ <id>http://blog.sizhujay.me</id>
  <author>
    <name>Blueness</name>
    <email>Blueness.D@gmail.com</email>
@@ -13,7 +13,7 @@
  
  <entry>
    <title>Blogging Like a Hacker</title>
-   <link href="http://rors.org/2011/09/29/write-blog-from-notepad/"/>
+   <link href="http://blog.sizhujay.me/2011/09/29/write-blog-from-notepad/"/>
    <updated>2011-09-29T00:00:00+08:00</updated>
    <id>http://rors.org/2011/09/29/write-blog-from-notepad</id>
    <content type="html">&lt;p&gt;用Notepad写blog&lt;/p&gt;</content>
