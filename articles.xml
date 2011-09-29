@@ -4,10 +4,10 @@ layout: nil
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  <title>Blueness</title>
- <link href="http://blog.sizhujay.me/articles.xml" rel="self"/>
- <link href="http://blog.sizhujay.me"/>
+ <link href="http://sizhujay.me/articles.xml" rel="self"/>
+ <link href="http://sizhujay.me"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://blog.sizhujay.me</id>
+ <id>http://sizhujay.me</id>
  <author>
    <name>Blueness</name>
    <email>Blueness.D@gmail.com</email>
