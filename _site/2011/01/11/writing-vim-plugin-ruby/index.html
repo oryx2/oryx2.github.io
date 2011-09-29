@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+ 
+<html>
+  <head>
+    
+      <title>Writing your first Vim plugin using Ruby bindings &bull;WebSite </title>
+    
+    <link rel="stylesheet" href="/stylesheets/reset.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/stylesheets/screen.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/stylesheets/GrungeEra.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/stylesheets/syntax.css" type="text/css" media="all" />
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="/javascripts/soundmanager2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      //<![CDATA[
+        soundManager.url = '/swf/'; 
+        soundManager.debugMode = false
+      //]]>
+    </script>
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="alternate" type="application/atom+xml" title="Blueness - articles" href="http://www.sizhujay.me/articles.xml">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="header">
+        <a name="top"></a>
+        <div id="logo"><a href="/" title="">Blueness</a></div>
+        <p id="intro">
+          Personal site of Blueness
+        </p>
+      </div>
+      <div id="content-outer" class="clear">
+        <div id="content-wrap">
+          <div class="content">
+            <div class="post">
+              <h1>
+Writing your first Vim plugin using Ruby bindings 
+<div id="post-nav">
+ 
+
+
+    <span class="page-nav-item next">
+      <a rel="next" href="/2011/09/29/write-blog-from-notepad/" 
+          title="Blogging Like a Hacker"
+      >»</a>
+    </span>
+  
+</div>
+</h1>
+<p class="post-info">Posted on 11 January 2011 </p>
+<p>As anyone who knows me is aware - I love Vim. I&#8217;ve been using it for a number of years now and I find it to be the most efficient way to write and edit code. I&#8217;ve spent countless hours customizing my vimrc and finding useful plugins but I&#8217;ve never actually written one myself. Recently I decided to change that and I thought I&#8217;d share my experience here.</p>
+
+<p>One of the biggest problems I had initially was finding a decent tutorial or documentation so we&#8217;ll be walking through writing a trivial (and I do mean trivial) Vim plugin using Ruby and then I&#8217;ll point you to some resources I found helpful for development.</p>
+
+<p>So, let&#8217;s get started! For this tutorial we&#8217;ll be building a plugin called &#8220;Jumpback.vim.&#8221; All it will do is provide a command that jumps the user back to their most recently viewed tab.</p>
+
+<p>The first thing you should do is pick a global variable name to represent your plugin. That way you can ensure that it only gets loaded one time. We&#8217;ll perform this check at the beginning of our file. Here we&#8217;ve decided on &#8220;loaded_jumpback&#8221;</p>
+
+<p>Liquid error: No such file or directory - pygmentize</p>
+
+<p>Next we need to make sure that our particular version of Vim is compiled with Ruby support. This is the most likely test to fail as many versions do not ship with Ruby support built in.</p>
+
+<p>Liquid error: No such file or directory - pygmentize</p>
+
+<p>With that out of the way - we can fairly safely assume that our plugin will be loaded successfully. At this point we should set our &#8220;loaded_jumpback&#8221; variable to ensure the plugin is only loaded once.</p>
+
+<p>Liquid error: No such file or directory - pygmentize</p>
+
+<p>Remember: The &#8220;g:&#8221; denotes a global scope so this variable will be accessible anywhere. For this reason you should try to make the name fairly unique.</p>
+
+<p>With that administrative stuff out of the way we can move on to setting up our Ruby bindings. Here we will be setting up Vim functions and mapping them to Ruby functions. That way we can write most of our code in Ruby which has substantially nicer syntax than Vimscript.</p>
+
+<p>For this plugin we will need 3 functions. The &#8220;Jump&#8221; function is what the user will ultimately be able to call. It does the work of switching the tab back. The &#8220;Startup&#8221; function is called when Vim launches and it stores the initial tab. Finally, the &#8220;TabChanged&#8221; function is called every time the user switches tabs. This will allow us to keep track of which tab the user was previously on as well as which tab the user is currently on.</p>
+
+<p>Here is how we map those Vim functions to their corresponding Ruby functions:</p>
+
+<p>Liquid error: No such file or directory - pygmentize</p>
+
+<p>The structure of the plugin is starting to take shape at this point - now its time for the meat.</p>
+
+<p>Two of the three functions we set up will need to be called automatically - one when Vim starts and the other when the user switches tabs. Doing this automatically will require use of Vim&#8217;s autocmd functionality. We&#8217;ll set up an autocmd group and bind our Vim functions (which in turn will call our Ruby functions) to the appropriate events. (You can see a list of available events with :help autocmd-events )</p>
+
+<p>Liquid error: No such file or directory - pygmentize</p>
+
+<p>Just two steps remain in our little plugin! Lets set up a Vim command so that the end user can easily call it or bind it to the key of their choosing.</p>
+
+<p>Liquid error: No such file or directory - pygmentize</p>
+
+<p>Now the user will be able to use our functionality by typing :Jumpback in their editor window. At this point we have everything but the Ruby code in place. There are several ways to include Ruby code in your vim file but we&#8217;ll use the most straightforward. We just need to implement functions that match up to our earlier bindings and provide the desired functionality. The implementation is trivial - so I won&#8217;t bother to explain it here but if you do happen to have any questions feel free to ask in the comments.</p>
+
+<p>Liquid error: No such file or directory - pygmentize</p>
+
+<p>And thats it! We&#8217;re done! If you drop this file in your plugin directory and call :Jumpback it will work as desired. Now obviously this isn&#8217;t a particularly useful plugin but it should show you the basics of how to set up and implement one. I&#8217;ll leave you with some resources that I found helpful while learning myself.</p>
+
+<p><a href='http://www.ibm.com/developerworks/linux/library/l-vim-script-1/index.html'>IBM Guide to Vimscript</a> - Note that there are 5 parts, you can adjust the URL as needed but there don&#8217;t appear to be links.</p>
+
+<p><a href='http://vimdoc.sourceforge.net/htmldoc/if_ruby.html'>Vim Ruby Bindings Docs</a></p>
+
+<p><a href='https://github.com/thecoffman/Jumpback.vim'>Jumpback.vim Source Code</a></p>
+
+<p>I hope you found this helpful, if you have any questions feel free to leave them in the comments.</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="footer-outer" class="clear"><div id="footer-wrap">
+        <div class="content">	
+          <div class="columns">
+            <div class="col">
+              <h3>About</h3>
+                <p>
+                  <a href="mailto:blueness.d@gmail.com" title="Blueness"><img  src="/images/gravatar.jpg"  alt="Blueness" class="float-left"></a>
+                  
+                <p class='copyright'>
+                  <a href="http://www.sizhujay.me/articles.xml" title="Subscribe to feed"><img src="/images/feed.gif" style="border:none;padding:0;position:relative;top:3px;" /></a>
+                  Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a>, styled with <a href="http://www.styleshout.com/templates/preview/GrungeEra11/index.html" target="_blank">GrungeEra</a>.
+                </p>
+              </div>	
+              <div class="col">
+                <h3>Search</h3>
+                <form id="quick-search" action="http://www.google.com/search" method="get">
+                  <p>
+                    <label for="qsearch">Search:</label>
+                    <input class="tbox" id="qsearch" type="text" name="q" value="Search..." title="Start typing and hit ENTER" onclick="this.value=''">
+                    <input name="sitesearch" type="hidden" value="rors.org" /> 
+                    <input class="btn" alt="Search" type="image" name="searchsubmit" title="Search" src="/images/search.gif">
+                  </p>
+                </form>	
+                
+                <h3>Archive </h3>
+                <div class="footer-list">
+                  <ul>
+                   
+                    <li>
+                      <a href="/2011/09/29/write-blog-from-notepad/">
+                        Blogging Like a Hacker
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="/2011/01/11/writing-vim-plugin-ruby/">
+                        Writing your first Vim plugin using Ruby bindings
+                      </a>
+                    </li>
+                    
+                  </ul>
+                </div>
+              </div>
+
+            <!-- columns ends -->	
+            </div>
+
+          </div>
+
+        <!-- footer ends -->
+        </div>
+        </div>
+    <div/>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-1192097-4");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+  </body>
+</html>

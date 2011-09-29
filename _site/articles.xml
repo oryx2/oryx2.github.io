@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>Blueness</title>
+ <link href="http://www.sizhujay.me/articles.xml" rel="self"/>
+ <link href="http://www.sizhujay.me"/>
+ <updated>2011-09-29T17:34:34+08:00</updated>
+ <id>http://www.sizhujay.me</id>
+ <author>
+   <name>Blueness</name>
+   <email>Blueness.D@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Blogging Like a Hacker</title>
+   <link href="http://rors.org/2011/09/29/write-blog-from-notepad/"/>
+   <updated>2011-09-29T00:00:00+08:00</updated>
+   <id>http://rors.org/2011/09/29/write-blog-from-notepad</id>
+   <content type="html">&lt;p&gt;用Notepad写blog&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Writing your first Vim plugin using Ruby bindings</title>
+   <link href="http://rors.org/2011/01/11/writing-vim-plugin-ruby/"/>
+   <updated>2011-01-11T00:00:00+08:00</updated>
+   <id>http://rors.org/2011/01/11/writing-vim-plugin-ruby</id>
+   <content type="html">&lt;p&gt;As anyone who knows me is aware - I love Vim. I&amp;#8217;ve been using it for a number of years now and I find it to be the most efficient way to write and edit code. I&amp;#8217;ve spent countless hours customizing my vimrc and finding useful plugins but I&amp;#8217;ve never actually written one myself. Recently I decided to change that and I thought I&amp;#8217;d share my experience here.&lt;/p&gt;
+
+&lt;p&gt;One of the biggest problems I had initially was finding a decent tutorial or documentation so we&amp;#8217;ll be walking through writing a trivial (and I do mean trivial) Vim plugin using Ruby and then I&amp;#8217;ll point you to some resources I found helpful for development.&lt;/p&gt;
+
+&lt;p&gt;So, let&amp;#8217;s get started! For this tutorial we&amp;#8217;ll be building a plugin called &amp;#8220;Jumpback.vim.&amp;#8221; All it will do is provide a command that jumps the user back to their most recently viewed tab.&lt;/p&gt;
+
+&lt;p&gt;The first thing you should do is pick a global variable name to represent your plugin. That way you can ensure that it only gets loaded one time. We&amp;#8217;ll perform this check at the beginning of our file. Here we&amp;#8217;ve decided on &amp;#8220;loaded_jumpback&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - pygmentize&lt;/p&gt;
+
+&lt;p&gt;Next we need to make sure that our particular version of Vim is compiled with Ruby support. This is the most likely test to fail as many versions do not ship with Ruby support built in.&lt;/p&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - pygmentize&lt;/p&gt;
+
+&lt;p&gt;With that out of the way - we can fairly safely assume that our plugin will be loaded successfully. At this point we should set our &amp;#8220;loaded_jumpback&amp;#8221; variable to ensure the plugin is only loaded once.&lt;/p&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - pygmentize&lt;/p&gt;
+
+&lt;p&gt;Remember: The &amp;#8220;g:&amp;#8221; denotes a global scope so this variable will be accessible anywhere. For this reason you should try to make the name fairly unique.&lt;/p&gt;
+
+&lt;p&gt;With that administrative stuff out of the way we can move on to setting up our Ruby bindings. Here we will be setting up Vim functions and mapping them to Ruby functions. That way we can write most of our code in Ruby which has substantially nicer syntax than Vimscript.&lt;/p&gt;
+
+&lt;p&gt;For this plugin we will need 3 functions. The &amp;#8220;Jump&amp;#8221; function is what the user will ultimately be able to call. It does the work of switching the tab back. The &amp;#8220;Startup&amp;#8221; function is called when Vim launches and it stores the initial tab. Finally, the &amp;#8220;TabChanged&amp;#8221; function is called every time the user switches tabs. This will allow us to keep track of which tab the user was previously on as well as which tab the user is currently on.&lt;/p&gt;
+
+&lt;p&gt;Here is how we map those Vim functions to their corresponding Ruby functions:&lt;/p&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - pygmentize&lt;/p&gt;
+
+&lt;p&gt;The structure of the plugin is starting to take shape at this point - now its time for the meat.&lt;/p&gt;
+
+&lt;p&gt;Two of the three functions we set up will need to be called automatically - one when Vim starts and the other when the user switches tabs. Doing this automatically will require use of Vim&amp;#8217;s autocmd functionality. We&amp;#8217;ll set up an autocmd group and bind our Vim functions (which in turn will call our Ruby functions) to the appropriate events. (You can see a list of available events with :help autocmd-events )&lt;/p&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - pygmentize&lt;/p&gt;
+
+&lt;p&gt;Just two steps remain in our little plugin! Lets set up a Vim command so that the end user can easily call it or bind it to the key of their choosing.&lt;/p&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - pygmentize&lt;/p&gt;
+
+&lt;p&gt;Now the user will be able to use our functionality by typing :Jumpback in their editor window. At this point we have everything but the Ruby code in place. There are several ways to include Ruby code in your vim file but we&amp;#8217;ll use the most straightforward. We just need to implement functions that match up to our earlier bindings and provide the desired functionality. The implementation is trivial - so I won&amp;#8217;t bother to explain it here but if you do happen to have any questions feel free to ask in the comments.&lt;/p&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - pygmentize&lt;/p&gt;
+
+&lt;p&gt;And thats it! We&amp;#8217;re done! If you drop this file in your plugin directory and call :Jumpback it will work as desired. Now obviously this isn&amp;#8217;t a particularly useful plugin but it should show you the basics of how to set up and implement one. I&amp;#8217;ll leave you with some resources that I found helpful while learning myself.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://www.ibm.com/developerworks/linux/library/l-vim-script-1/index.html'&gt;IBM Guide to Vimscript&lt;/a&gt; - Note that there are 5 parts, you can adjust the URL as needed but there don&amp;#8217;t appear to be links.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://vimdoc.sourceforge.net/htmldoc/if_ruby.html'&gt;Vim Ruby Bindings Docs&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='https://github.com/thecoffman/Jumpback.vim'&gt;Jumpback.vim Source Code&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I hope you found this helpful, if you have any questions feel free to leave them in the comments.&lt;/p&gt;</content>
+ </entry>
+ 
+ 
+</feed>

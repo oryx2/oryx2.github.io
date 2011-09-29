@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+<h1>
+{{ page.title }} 
+<div id="post-nav">
+{% if page.previous %}
+  <span class="page-nav-item prev">
+    <a rel="prev" href="{{ page.previous.url }}" 
+        title="{{ page.previous.title }}"
+    >«</a>
+  </span>
+{% endif %} 
+
+{% if page.next %}
+    <span class="page-nav-item next">
+      <a rel="next" href="{{ page.next.url }}" 
+          title="{{ page.next.title }}"
+      >»</a>
+    </span>
+  {% endif %}
+</div>
+</h1>
+<p class="post-info">Posted on {{ page.date | date_to_long_string }} </p>
+{{ content }}

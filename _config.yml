@@ -1,0 +1,6 @@
+pygments: true
+permalink: pretty
+markdown: maruku
+source:      .
+destination: ./_site
+exclude: ['README.markdown']
