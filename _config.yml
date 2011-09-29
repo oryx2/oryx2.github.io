@@ -1,6 +1,7 @@
 pygments: true
 permalink: pretty
 markdown: maruku
+#baseurl:    /blueness
 source:      .
 destination: ./_site
 exclude: ['README.markdown']
