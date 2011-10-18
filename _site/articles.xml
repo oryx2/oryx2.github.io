@@ -1,15 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  <title>Blueness</title>
- <link href="http://blog.sizhujay.me/articles.xml" rel="self"/>
- <link href="http://blog.sizhujay.me"/>
- <updated>2011-09-29T20:51:10+08:00</updated>
- <id>http://blog.sizhujay.me</id>
+ <link href="http://sizhujay.me/articles.xml" rel="self"/>
+ <link href="http://sizhujay.me"/>
+ <updated>2011-10-18T20:02:58+08:00</updated>
+ <id>http://sizhujay.me</id>
  <author>
    <name>Blueness</name>
    <email>Blueness.D@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>偶尔停下匆忙的脚步，驻足思考</title>
+   <link href="http://blog.sizhujay.me/Thinking/2011/10/17/stop-your-step-to-thinking/"/>
+   <updated>2011-10-17T00:00:00+08:00</updated>
+   <id>http://rors.org/Thinking/2011/10/17/stop-your-step-to-thinking</id>
+   <content type="html">&lt;h3&gt;【外刊IT评论】给盲目兴奋的程序员们的建议&lt;/h3&gt;
+&lt;p&gt;我偶然看到一些漫无目的、精力旺盛的程序员说出类似这样的话：&lt;/p&gt;
+
+&lt;p&gt;“ 嘿，大家好！我刚刚学会了Erlang/Haskell/Python，我正在找一个大型项目用它们去写。如果你们知道，请告诉我！”&lt;/p&gt;
+
+&lt;p&gt;或者&lt;/p&gt;
+
+&lt;p&gt;“我喜欢Linux和开源软件，我想通过开发一个项目来向开源社区贡献我的力量。有没有一个很重要的软件，但只能在Windows上运行，而你希望有个Linux版本的？”&lt;/p&gt;
+
+&lt;p&gt;这些找不着方向的问题总是让我困惑不已。他们把程序语言或操作系统或软件许可协议当成关键条件。他们的目的跟解决某个问题或跟创造价值或跟说话人对 软件的兴趣没有一点关系。你能相信一个不爱音乐的人能开发出一个好的乐谱软件吗？对Photoshop没有专业了解的人能克隆出一套Photoshop软 件吗？不过我不想在这里详细讨论这些负面的问题。 下面是我对那些发出这些问题的人的一些建议：&lt;/p&gt;
+
+&lt;p&gt;停止发问。想一想你所有的个人兴趣，去解决一个跟你这些兴趣相关的简单的问题。例如，我用电子琴来联系我的吉他技能，但我想给这电子声乐里加入一些 人性的元素，像自动音效补偿，偶然的变奏，等等。怎样才能做到这些呢?我可以写一个简单的声乐处理程序——不需要图像界面——看看效果如何。我照了很多的 照片，我需要一个照片分类标记工具，不需要像Adobe Lightroot那样全能。简单但够用，一个下午我就你解决此类问题。&lt;/p&gt;
+
+&lt;p&gt;两点： (1)要简单，(2)是你实际要用的东西。&lt;/p&gt;
+
+&lt;p&gt;一旦做出能够运行的东西，接下来的工作是要一步步的改进。不要试图做出一个可以对外发布的版本来给自己制造压力，你只要花时间多看看现有的程序，改进它。我是否能用HTML5来实现我的照片分类器的前端界面呢？&lt;br /&gt; 如果你坚持这样，用不了多少回，你就会成为一个专家、一个对于一个界限清晰、也许只是跟你的问题相关的小领域里的专家，但，仍然是个专家。成为专家 有一个有趣的边际效应：有些之前看起来令人畏缩、好像不可能的改进工作或功能特性，当你尝试着开始去做后，你的程序很可能因此而突然显现出吸引力，受到广 大用户的关注。&lt;/p&gt;
+
+&lt;p&gt;摘自&lt;a href='http://www.oschina.net/news/12324/advice-to-aimless-excited-programmers'&gt;http://www.oschina.net/news/12324/advice-to-aimless-excited-programmers&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>分隔符问题</title>
+   <link href="http://blog.sizhujay.me/Thinking/2011/10/17/some-trouble-of-delimiter/"/>
+   <updated>2011-10-17T00:00:00+08:00</updated>
+   <id>http://rors.org/Thinking/2011/10/17/some-trouble-of-delimiter</id>
+   <content type="html">&lt;p&gt;项目中经常使用竖线“|”作为分隔符，一直以来没有出现问题，像下面这样：&lt;/p&gt;
+
+&lt;p&gt;a|b|c|d|啊|哦|额&lt;/p&gt;
+
+&lt;p&gt;用的也比较多，比较简洁吧。 但今天再次使用这种方式时却遇到了问题，解析出错了，客户姓名里包含一个繁体中文“韡”(这个念wěi)。编码方式为gbk，最初以为gbk字库里没有该繁体字，google一下发现有，哎，失败。继续，后仔细看解析后的结果，发现虽然“韡”解为乱码，但之后的一项正确解析了，只是最后的数据少了一项，就感觉“韡”中间包含了一个竖线似的。没办法，反编译看看吧，发现项目是拿字节去比较，然后截取的，于是怀疑“韡”中的某位字节与“|”线的字节相等，测试一下果然，“韡” gbk下的字节为ED7C,而竖线的字节为7C,ou出问题了。 将编码改为UTF-8,解决之。 过后我在想，UTF-8编码难道不会出现这种情况，遂又查询了一下UTF-8编码方式，如下:&lt;/p&gt;
+
+&lt;p&gt;Unicode符号范围 | UTF-8编码方式 (十六进制) | （二进制） &amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8211;+&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212; 0000 0000-0000 007F | 0xxxxxxx&lt;/p&gt;
+
+&lt;p&gt;0000 0080-0000 07FF | 110xxxxx 10xxxxxx&lt;/p&gt;
+
+&lt;p&gt;0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx&lt;/p&gt;
+
+&lt;p&gt;0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx&lt;/p&gt;
+
+&lt;p&gt;汉字在第二行或第三行，竖线在第一行，007C，可以看出汉字的字节数组中不会存在第一行中的字节，故不会出现上述问题。&lt;/p&gt;
+
+&lt;p&gt;其实还有疑问，分隔时为什么按字节截取，而不是按字符截取，哎，以后再想吧。&lt;/p&gt;</content>
+ </entry>
  
  <entry>
    <title>Blogging Like a Hacker</title>
