@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>My Jekyll Site</title>
+    <link>oryx2.github.io</link>
+    <description>Blogging about stuffs</description>
+    <pubDate>Fri, 08 May 2015 00:00:00 +0800</pubDate>
+    <item>
+      <title>加载war包里WEB-INF下的资源文件</title>
+      <link>oryx2.github.io/java/classloader/2015/05/08/why-classloader-cannot-loader-file-in-webinf.html</link>
+      <description>&lt;p&gt;通过classloader读取war包下WEB-INF里的文件失败&lt;/p&gt;
+</description>
+      <pubDate>Fri, 08 May 2015 00:00:00 +0800</pubDate>
+      <dc:date>2015-05-08T00:00:00+08:00</dc:date>
+    </item>
+    <dc:date>2015-05-08T00:00:00+08:00</dc:date>
+  </channel>
+</rss>
