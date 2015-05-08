@@ -1,6 +1,6 @@
 ---
-layout: page
+layout: default
 title: About me 
 ---
 
-This is a static page. It could be an 'about page' if you'd like.
+To be a NoCoder for fun.
