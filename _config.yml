@@ -13,3 +13,5 @@ domain_name: 'http://oryx2.github.io/'
 # Details for the RSS feed generator
 url:            'oryx2.github.io'
 author:         'oxry2'
+
+theme: jekyll-theme-minimal
